@@ -1,0 +1,16 @@
+{% extends 'listings/base.html' %} {% block content %}
+<h2>{{ item.title }}</h2>
+
+<ul>
+    <li>Description : {{ item.description }}</li>
+    <li>Année : {{ item.year }}</li>
+    <li>Type : {{ item.type }}</li>
+    <li>Vendu ? {{item.sold | yesno}}</li>
+</ul>
+
+Un object lié au groupe :
+<p>{{ item.band }}</p>
+
+<a href="{% url 'item-list' %}">Retour à toutes les annonces</a>
+
+{% endblock %}

@@ -2,8 +2,8 @@
 
 <h1>Objets en vente</h1>
 <ul>
-    {% for item in list %}
-    <li>{{item.title}}</li>
+    {% for item in items %}
+    <li><a href="{% url 'item-detail' item.id %}">{{item.title}}</a></li>
     {% endfor %}
 </ul>
 
