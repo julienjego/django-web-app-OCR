@@ -26,6 +26,28 @@ def band_create(request):
     return render(request, "listings/band_create.html", {"form": form})
 
 
+def band_update(request, id):
+    band = Band.objects.get(id=id)
+    if request.method == "POST":
+        form = BandForm(request.POST, instance=band)
+        if form.is_valid():
+            form.save()
+            return redirect("band-detail", band.id)
+    else:
+        form = BandForm(instance=band)
+
+    return render(request, "listings/band_update.html", {"form": form})
+
+
+def band_delete(request, id):
+    band = Band.objects.get(id=id)
+    if request.method == "POST":
+        band.delete()
+        return redirect("band-list")
+
+    return render(request, "listings/band_delete.html", {"band": band})
+
+
 def about(request):
     return render(request, "listings/about.html")
 
@@ -51,6 +73,28 @@ def item_create(request):
         form = ItemForm()
 
     return render(request, "listings/item_create.html", {"form": form})
+
+
+def item_update(request, id):
+    item = Listing.objects.get(id=id)
+    if request.method == "POST":
+        form = ItemForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect("item-detail", item.id)
+    else:
+        form = ItemForm(instance=item)
+
+    return render(request, "listings/item_update.html", {"form": form})
+
+
+def item_delete(request, id):
+    item = Listing.objects.get(id=id)
+    if request.method == "POST":
+        item.delete()
+        return redirect("item-list")
+
+    return render(request, "listings/item_delete.html", {"item": item})
 
 
 def contact(request):

@@ -1,0 +1,7 @@
+<h1>Supprimer une annonce</h1>
+
+<p>Voulez-vous vraiment supprimer l'annonce : {{item.title}} ?</p>
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Supprimer" />
+</form>
